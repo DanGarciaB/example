@@ -1,0 +1,75 @@
+<html>
+<head>
+    
+    <title>JavaScript</title>
+    
+    <style type="text/css">
+        
+        #figura{
+            width: 200px;
+            height: 200px;
+            background-color:dodgerblue;
+            top: 100px;
+            left: 200px;
+            position: relative;
+        } 
+    
+    
+    
+    
+    </style>
+    
+    </head>
+
+<body>
+    <p>Tu tiempo fue :<span id="tiempo"></span></p>
+    <div id="figura"></div>
+    <script type="text/javascript">
+        var inicio = new Date().getTime();
+        
+        function obtenercolor(){
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i=0; i<6; i++){
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        
+        
+        function mostrarfigura(){
+            var top = Math.random() * 500;
+            var left = Math.random() * 1000;
+            var rad = Math.random() * 50;
+            
+            
+            document.getElementById("figura").style.top = top + "px";
+            document.getElementById("figura").style.left = left +"px";
+            document.getElementById("figura").style.borderRadius = rad + "%";
+            document.getElementById("figura").style.backgroundColor = obtenercolor();
+          
+            document.getElementById("figura").style.display = "block"
+             inicio = new Date().getTime();
+        }
+        
+        
+    document.getElementById("figura").onclick = function(){
+        
+        setTimeout(mostrarfigura, 1000);
+        
+        document.getElementById("figura").style.display = "none";
+        
+        var final = new Date().getTime();
+        
+        var tiempo = (final - inicio) / 1000; 
+        
+        document.getElementById("tiempo").innerHTML = " " + tiempo + " " + "segundos";
+        
+        
+    }
+        
+    </script>
+    </body>
+
+
+</html>
