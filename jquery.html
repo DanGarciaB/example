@@ -1,0 +1,148 @@
+<html>
+<head>
+<title> JQery </title>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style type="text/css">
+        
+        body{
+            font-family: 'Indie Flower', cursive;
+            font-size: 100%;
+        }
+        input{
+            border-radius: 5px;
+            height: 25px;
+            padding: 5px;
+            border: 1px solid gold;
+            text-align: center;
+        }
+        label{
+            position: relative;
+            width: 200px;
+            width: 150px;
+            top: 2px;
+            float: left;
+        }
+        #wrapper{
+            width: 500px;
+            margin:0 auto;
+        }
+        .elemento{
+            margin-bottom: 10px;
+        }
+        #botonsubmit{
+            width: 100px;
+            margin-left: 150px;
+        }
+        #mensajeerror{
+            color: red;
+        }#datoscorrectos{
+            color: dodgerblue;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="wrapper">
+        <div id="mensajeerror"></div>
+        <div id="datoscorrectos"></div>
+        
+        <div class="elemento">
+            <label for="correo">E-mail:</label>
+            <input type="text" name="correo" id="correo" placeholder="correo@example.com">
+        <br>
+            </div>
+        
+            <div class="elemento">
+                
+            <label for="telefono">Telefonno:</label>
+            <input type="text" name="telefono" id="telefono" placeholder="11-22-33-44-55">
+                
+                </div>
+        
+            <div class="elemento">
+                
+            <label for="password">Contrase&ntilde;a:</label>
+            <input type="password" name="password" id="password">
+                
+                </div>
+        
+            <div class="elemento">
+                
+            <label for="passwordConfirm">Confirmar Contrase&ntilde;a:</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm">
+                
+                </div>
+        
+            <div class="elemento">
+                
+            <input type="submit" id="botonsubmit" value="Registrar"
+                
+                </div>
+        
+    </div>
+    
+    <script type="text/javascript">
+    
+        
+          function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+            }
+        
+        
+        $("#botonsubmit").click(function(){
+            
+            var error = "";
+            var campofaltante = "";
+            
+            if($("#correo").val() == ""){
+                campofaltante += "<p>Correo electronico</p>";
+            }else{
+                if(isEmail($("#correo").val()) == false ){
+                error += "<p>Correo electronico invalido</p>";
+            }
+            }
+            if($("#telefono").val() == ""){
+                campofaltante += "<p>Telefono</p>";
+            }else{
+                if($.isNumeric($("#telefono").val()) == false){
+                error += "<p>Telefono invalido</p>"
+                
+            }
+            }
+            if($("#password").val() == ""){
+                campofaltante += "<p>Contraseña</p>";
+            }
+            if($("#passwordConfirm").val() == ""){
+                campofaltante += "<p>Confirmar contraseña</p>";
+            }else{
+                if($("#password").val() != $("#passwordConfirm").val()){
+                error += "<p>Contraseñas no coinciden</p>";
+            }
+            }
+            if(campofaltante != ""){
+                error += "Falta completar el siguiente campo:" + campofaltante;
+            }
+            
+            if(error != ""){
+                $("#mensajeerror").html(error);
+            }else{
+                 $("#mensajeerror").html("");
+                $("#datoscorrectos").html("Datos Ingresados Correctamente");
+            }
+        });
+        
+    </script>
+    
+    
+    
+</body>
+
+
+
+</html>
